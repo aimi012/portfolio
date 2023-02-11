@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Question Game</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+      #question-container {
+        text-align: center;
+      }
+
+      button {
+        margin: 10px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: none;
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="question-container">
+      <p id="question"></p>
+      <button id="option1"></button>
+      <button id="option2"></button>
+      <button id="option3"></button>
+      <button id="option4"></button>
+    </div>
+    <script>
+      const questionContainer = document.getElementById("question-container");
+      const question = document.getElementById("question");
+      const option1 = document.getElementById("option1");
+      const option2 = document.getElementById("option2");
+      const option3 = document.getElementById("option3");
+      const option4 = document.getElementById("option4");
+
+      const questions = [
+        {
+          question: "Why must hire me?",
+          options: ["London", "Paris", "Rome", "Berlin"],
+          answer: 1,
+        },
+        {
+          question: "What is the largest ocean in the world?",
+          options: [
+            "Atlantic Ocean",
+            "Pacific Ocean",
+            "Indian Ocean",
+            "Arctic Ocean",
+          ],
+          answer: 1,
+        },
+        // Add more questions as needed
+      ];
+
+      let currentQuestion = 0;
+
+      questionContainer.addEventListener("click", function (event) {
+        if (event.target.tagName === "BUTTON") {
+          checkAnswer(event.target.textContent);
+        }
+      });
+
+      function checkAnswer(answer) {
+        if (
+          answer ===
+          questions[currentQuestion].options[questions[currentQuestion].answer]
+        ) {
+          alert("Correct!");
+        } else {
+          alert(
+            "Incorrect. The correct answer was: " +
+              questions[currentQuestion].options[
+                questions[currentQuestion].answer
+              ]
+          );
+        }
+        currentQuestion++;
+        if (currentQuestion === questions.length) {
+          alert("You have answered all the questions!");
+          return;
+        }
+        renderQuestion();
+      }
+
+      function renderQuestion() {
+        question.textContent = questions[currentQuestion].question;
+        option1.textContent = questions[currentQuestion].options[0];
+        option2.textContent = questions[currentQuestion].options[1];
+        option3.textContent = questions[currentQuestion].options[2];
+        option4.textContent = questions[currentQuestion].options[3];
+      }
+
+      renderQuestion();
+    </script>
+  </body>
+</html>

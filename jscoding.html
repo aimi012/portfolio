@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Dark Theme To-Do List</title>
+    <style>
+        body {
+  background-color: #333;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #00b894;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background-color: #444;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+li span {
+  float: right;
+  cursor: pointer;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>To-Do List</h1>
+      <input type="text" id="taskInput" placeholder="Add a task">
+      <button id="addTaskBtn">Add Task</button>
+      <ul id="taskList">
+        <!-- tasks will be added here dynamically using JavaScript -->
+      </ul>
+    </div>
+    <script>
+        const taskInput = document.getElementById("taskInput");
+const addTaskBtn = document.getElementById("addTaskBtn");
+const taskList = document.getElementById("taskList");
+
+// Load tasks from local storage when the page loads
+window.addEventListener("load", function() {
+  const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  savedTasks.forEach(function(task) {
+    const taskLi = document.createElement("li");
+    taskLi.innerHTML = `${task} <span>&times;</span>`;
+    taskList.appendChild(taskLi);
+
+    taskLi.querySelector("span").addEventListener("click", function() {
+      taskLi.remove();
+      saveTasks();
+    });
+  });
+});
+
+addTaskBtn.addEventListener("click", function() {
+  const taskValue = taskInput.value;
+  if (taskValue === "") return;
+
+  const taskLi = document.createElement("li");
+  taskLi.innerHTML = `${taskValue} <span>&times;</span>`;
+  taskList.appendChild(taskLi);
+
+  taskInput.value = "";
+
+  taskLi.querySelector("span").addEventListener("click", function() {
+    taskLi.remove();
+    saveTasks();
+  });
+
+  saveTasks();
+});
+
+// Function to save tasks to local storage
+function saveTasks() {
+  const taskElements = taskList.querySelectorAll("li");
+  const tasks = Array.from(taskElements).map(function(task) {
+    return task.textContent.slice(0, -1);
+  });
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+
+    </script>
+  </body>
+</html>

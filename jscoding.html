@@ -49,17 +49,38 @@ li span {
   cursor: pointer;
 }
 
+.more {
+
+  align-items: center;
+  text-align: center;
+  box-shadow: wheat 10px 10px;
+  margin: 1px;
+  border: 1px black solid;
+}
+
+.more a{
+color: white;
+text-decoration: none;
+}
+
+
+
     </style>
   </head>
   <body>
     <div class="container">
+      
       <h1>To-Do List</h1>
       <input type="text" id="taskInput" placeholder="Add a task">
+      <div class="more">
+        <a href="http://127.0.0.1:5500/magic.html"><h1>View More Project</h1></a>
+      </div>
       <button id="addTaskBtn">Add Task</button>
       <ul id="taskList">
         <!-- tasks will be added here dynamically using JavaScript -->
       </ul>
     </div>
+    
     <script>
         const taskInput = document.getElementById("taskInput");
 const addTaskBtn = document.getElementById("addTaskBtn");
@@ -111,7 +132,7 @@ function saveTasks() {
 
     </script>
     <div class="more">
-      <a href="http://127.0.0.1:5500/magic.html"><h1>View More</h1>
+
     </div>
   </body>
 </html>

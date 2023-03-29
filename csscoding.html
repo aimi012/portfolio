@@ -1,6 +1,18 @@
 <html>
   <head>
     <style>
+    
+    @keyframes typing {
+      from { width: 0 }
+  to { width: 45% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
+
       body {
   background: linear-gradient(to bottom, #f6d365 0%, #fda085 100%);
 }
@@ -91,21 +103,56 @@
     background-color: #333;
   }  
 }
+.more {
+  border: 1px black solid;
+  margin: 13px;
+}
+.more2{
+  padding: 13px;
+  width: 100px;
+  border: 1px black solid;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  margin: 0 13px; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s,
+    
+    blink-caret .75s;
+}
+.more a {
+  text-decoration: none;
+  color: black;
+}
+.more a:hover {
+  text-decoration: none;
+  color: whitesmoke;
+}
+.more:hover {
+  background-color: #333;
+  text-decoration: none;
+  color: white;
+}
 
 
     </style>
   </head>
   <body>
 
-    <div class="container">
+    
+    <div class="container">  
+      <div class="more2">
+        <h3>If You are in a mobile , try long touch</h3>
+      </div>
       <div class="box">
+        
         <h1>hover me</h1>
         <div class="title">The things that you want will be a scrrifice</div>
         <div class="description">If you don't saccrifice for the things you want</div>
-
       </div>
-      
+      <div class="more">
+        <a href="http://127.0.0.1:5500/magic.html"><h1>View More</h1>
+      </div>
     </div>
-  
+    
   </body>
 </html>
